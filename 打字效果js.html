@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打字效果</title>
+	<script type="text/javascript">//ES6写法
+		var code =  `   
+		body{
+			background: red;
+		}
+		p{
+			color: green;
+			font-size: 20px;
+		}
+		`
+		var n=0
+		setInterval(function(){
+			content.innerHTML = code.substring(0,n);
+			style.innerHTML = code.substring(0,n);
+			n=n+1;
+			app.innerHTML = n;
+			//console.log(n);
+		},100)
+
+
+	</script>
+</head>
+<body>
+	<div id="content"></div>
+	<style id="style"></style>
+	<p>段落,d我是黄重庆！这个打字效果吊炸天吧！哈哈</p>
+	<div id="app"></div>
+</body>
+</html>

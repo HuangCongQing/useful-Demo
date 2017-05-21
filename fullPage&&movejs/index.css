@@ -24,7 +24,7 @@ body{
     opacity: .8;
 }
 .section1 p{
-    margin: 800px auto 0;
+    margin: 800px auto 0;  //距离顶端800px，js
     color: #fff;
     font-size: 18px;
     width: 60%;

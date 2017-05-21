@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=" utf-8">
+<meta name="author" content="http://www.softwhy.com/" />
+<title>原生js</title>
+<style type="text/css">
+*{
+  font-size:12px;
+  font-family:Verdana, Geneva, sans-serif;
+  line-height:14px
+}
+a{color:#039}
+a:hover{color:#f60}
+.pop{
+  position:absolute;
+  left:40%;
+  top:40%;
+  width:300px;
+  height:100px;
+  background:#eee;
+  border:1px solid #ccc
+}
+.pop_head{
+  position:relative;
+  height:20px;
+  background:#ccc
+}
+.pop_head a{
+  position:absolute;
+  right:8px;
+  line-height:20px;
+  color:#000;
+  text-decoration:none
+}
+.pop_head a:hover{
+  color:#f60;
+  text-decoration:none
+}
+.pop_body{padding:8px}
+</style>
+<script type="text/javascript"> 
+function show(ev,id){ 
+  var ev=window.event||ev;
+  ev.stopPropagation?ev.stopPropagation():ev.cancelBubble=true;
+  var obj=document.getElementById(id); 
+  obj.style.display=""; 
+} 
+function hide(evt,id){ 
+  var obj=document.getElementById(id); 
+  var target=evt.target?evt.target:evt.srcElement;
+  if(target.id=="pop"||target.id=="pop_head"||target.id=="pop_body")
+  return;
+  else
+  obj.style.display="none"; 
+} 
+document.onclick=function(ev){
+  var ev=window.event||ev;
+  hide(ev,'pop');
+}
+window.onload=function(){
+  var theclose=document.getElementById("closeid");
+  var theshow=document.getElementById("showid");
+   
+  theclose.onclick=function(){
+    var ev=window.event||ev;
+    hide(ev,'pop')
+  }
+   
+  theshow.onclick=function(ev){
+    var ev=window.event||ev;
+    show(ev,"pop")
+  }
+}
+</script>
+</head>
+<body>
+<div id="pop" class="pop" style="display:none">
+  <div id="pop_head" class="pop_head"><a href="javascript:void(0);" id="closeid">关闭</a></div>
+  <div id="pop_body" class="pop_body">蚂蚁部落欢迎您</div>
+</div>
+<a href="javascript:void(0);" id="showid">弹出按钮</a> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击弹窗之外的地方，关闭​弹窗</title>
+     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="select3_box" style="width: 100px;height: 100px;background-color: red">
+    <div class="st2" style="width: 50px;height: 50px;background-color: green"></div>
+</div>
+    
+
+<script type="text/javascript">
+    $(document).click(function(event){
+        var _con = $(".select3_box");           
+        console.log(_con.has(event.target).length);
+        if(!_con.is(event.target) && (_con.has(event.target).length ===0)){
+            _con.remove();
+        }
+    });
+</script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style type="text/css">
+    #test {
+        width: 80px;
+        //height: 60px;
+        margin:10px auto;
+        /*border: 1px solid blue;*/
+
+    }
+    #button {
+        display: block;
+        width:50px;
+        margin:10 auto;
+    }
+    #content {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        margin:10 auto;
+        /*background: #1d1d1d;*/
+        border: 1px solid red;
+    }
+    #shard {
+        position: absolute;
+        display: block;
+        top: 0px;
+        left:0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: #d4f7d4;
+    }
+
+    
+    </style>
+</head>
+<body>
+<div id="shard" ></div>
+<div id="test">
+<a href="javascript:;" id="button">clickMe</a>
+<div id="content" style="display:none">show</div>    
+</div>
+
+
+<script>
+    $('#shard').hide();
+    $('#button').on('click',function(){
+        $('#content').css('display','block');
+        $('#shard').off('click');
+        $('#shard').hide();
+        setTimeout(function(){
+            $('#shard').show();
+            $('#shard').one('click',function(){
+                console.log('click ...');
+                $('#content').css('display','none');
+                $('#shard').hide();
+            })
+        }
+            , 0);
+    })
+</script>
+
+    
+</body>
+</html> -->
