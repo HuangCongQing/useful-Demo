@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>将APP图片所处的div设成relative，然后红色圈圈设成absolute，再设top/right即可</title>
+</head>
+<style type="text/css">
+	.tipIcon {
+	  background-color: #f00;
+	  color: #fff;
+	  border-radius:50%;
+	  text-align: center;
+	  position: absolute;
+	  width: 20px;
+	  height: 20px;
+	  right:-10px;  /*//负值为自身体积的一半*/
+	  top:-10px;
+	}
+
+</style>
+<body>
+	<div style="display: inline-block;position:relative;">
+	  <img src="http://upload-images.jianshu.io/upload_images/1959053-e67ca5077f4b182a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" />
+	  <span class="tipIcon">6</span>
+	</div>
+</body>
+</html>
