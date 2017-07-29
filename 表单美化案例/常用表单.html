@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <style type="text/css">
+    .divcss {
+        border: 1px solid#A1FCDA;
+        margin: 0 auto;
+        width: 1000px;
+        height: 1000px
+    }
+    label{
+    	width: 100px;
+    	display: inline-block;
+    	/*float: left;*/
+    }
+    input[type=text]{
+    	border: 1px solid #AAA;
+    	width: 300px;
+    	height: 20px;
+    	padding:3px 8px;
+    	outline: none;
+    }
+    input:focus{
+    	border-color: #c00;
+    	color: #c00;
+    	padding-right: 70px;
+    	transition: padding 0.25s
+    }
+    </style>
+</head>
+
+<body>
+    <div id="表单" class="divcss">
+        <form method="get" action="save.php">
+            <label for="name">用户名：</label>
+            <input type="text" name="用户名" size="20" id="name" maxlength="10" placeholder="重庆"/>
+            <br/>
+            <label for="password">密&nbsp;&nbsp;&nbsp; 码：</label>
+            <input type="password" name="密码" value="123456" size="20" id="password" maxlength="16">
+            <br/>
+            <label for="telephone">电&nbsp;&nbsp;&nbsp; 话：</label>
+            <input type="text" name="telephone" value=" " size="20" id="telephone" maxlength="11">
+            <br/>
+            <label for="id">身份证：</label>
+            <input type="text" name="id" value=" " id="id" size="20" maxlength="18">
+            <br/> 性&nbsp;&nbsp;&nbsp;&nbsp;别：
+            <label for="man">男</label>
+            <input type="radio" name="gender" value="man" id="man" checked="checked">
+            <label for="woman">女</label>
+            <input type="radio" name="gender" value="woman" id="woman">
+            <br/> 爱&nbsp;&nbsp;&nbsp;&nbsp;好：
+            <label for="jog">跑步</label>
+            <input type="checkbox" name="爱好" value="jog" id="jog" checked="checked">
+            <label for="football">足球</label>
+            <input type="checkbox" name="爱好" value="football" id="football" checked="checked">
+            <label for="basketball">篮球</label>
+            <input type="checkbox" name="爱好" value="basketball" id="basketball">
+            <label for="climb">爬山</label>
+            <input type="checkbox" name="爱好" value="climb" id="climb">
+            <br/> 你喜欢编程吗？
+            <select name="你喜欢编程吗？">
+                <option>请选择。。。</option>
+                <option value="喜欢">喜欢</option>
+                <option value="不喜欢">不喜欢</option>
+            </select>
+            <br/> 你会的编程语言有那些？
+            <br/>
+            <select name="你会的编程语言有那些？" multiple="multiple">
+                <option>请选择。。。</option>
+                <option value="Java">Java</option>
+                <option value="c">c</option>
+                <option value="c++">c++</option>
+                <option value="php">php</option>
+                <option value="c#">c#</option>
+            </select>
+            <br/>
+            <label id="suggest">你对我们有什么建议：</label>
+            <textarea cols="50" rows="10">在这里输入。。。</textarea>
+            <input type="submit" name="提交" value="提交"> &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="reset" name="重置" value="重置"> </form>
+    </div>
+</body>
+
+</html>
