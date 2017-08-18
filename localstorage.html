@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	if (localStorage.pagecount)
+	  {
+	  localStorage.pagecount=Number(localStorage.pagecount) +1;
+	  }
+	else
+	  {
+	  localStorage.pagecount=1;
+	  }
+	document.write("Visits "+ localStorage.pagecount + " time(s).");
+	console.log(typeof(localStorage.pagecount))
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+<title>实时柱状图</title> 
+<style type="text/css"> 
+span{ background-color:lime;font-size:1px;} 
+</style> 
+<script type="text/javascript"> 
+
+var arr = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1); 
+
+function showimage() 
+{ 
+var newdata = Math.ceil(Math.random()*200); //得到1-200之间的整数 
+arr = arr.slice(1); 
+arr[99] = newdata; 
+var str = ""; 
+for(var i=0;i<arr.length;i++) 
+{ 
+str += "<span style='width:4px;height:"+ arr[i] +"px'></span>"; 
+} 
+show.innerHTML = str ; 
+span1.innerText = newdata; 
+if(newdata>180)newdata=180 
+span2.style.height = newdata; 
+window.setTimeout("showimage()",300); 
+} 
+//脚本之家 www.jb51.net 
+</script> 
+</head> 
+
+<body bgcolor="black" style="color:white" onload="showimage()"> 
+<table height="200" border="0px;" cellspacing="0" cellpadding="0"> 
+<tr> 
+<td width="20" valign="bottom" align="right"> 
+<div style="height:90px;width:100%">200</div><div style="height:90px;width:100%">100</div><div style="height:20px;width:100%">0</div> 
+</td> 
+<td width="400" valign="bottom" id="show"></td> 
+<td width="35" valign="bottom" align="center"> 
+<span id="span1" style="width:100%;background-color:black;font-size:12px;">50</span> 
+<span id="span2" style="width:10px;height:50px"></span> 
+</td> 
+</tr> 
+</table> 
+</body></html>

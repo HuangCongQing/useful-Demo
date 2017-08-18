@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 模拟表单post方式提交</title>
+</head>
+<body>
+	<span style="font-size:12px;"><a href="#" onclick="postcall('newAnime',{page_num:1,page_size:10})"  >新番列表</a></span>
+	<script type="text/javascript">
+		function postcall(url,params){
+		    var tempform = document.createElement("form");
+		    tempform.action = "/"+url+"/";
+		    tempform.method = "post";
+		    tempform.style.display="none";
+		    for (var x in params) {        
+		        var opt = document.createElement("input");        
+		        opt.name = x;
+		        opt.setAttribute("value",params[x]);
+		        tempform.appendChild(opt);
+		    }
+		    
+		    var opt = document.createElement("input");  
+		    opt.type = "submit";
+		    opt.name = "postsubmit";
+		    tempform.appendChild(opt);
+		    document.body.appendChild(tempform);  
+		    tempform.submit();
+		}
+	</script>
+</body>
+</html>
