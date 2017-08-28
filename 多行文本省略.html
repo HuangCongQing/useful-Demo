@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .comment_inner{
+    width: 100px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 3; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+    }   
+</style>
+<body>
+    
+     
+<div>
+    <div class="comment_inner">换行换行换行换行换行换行换行换行换行换行换行换行</div>
+   <p>
+word-break 属性规定自动换行的处理方法。normal(使用浏览器默认的换行规则。),break-all(允许在单词内换行。),keep-all(只能在半角空格或连字符处换行。)
+   </p>
+</div> 
+    
+</body>
+</html
