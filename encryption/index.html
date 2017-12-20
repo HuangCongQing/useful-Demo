@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        window.onload = function () {
+                var secret = document.getElementById('secret');
+                var btn1 = document.getElementById('btn1');
+                var btn2 = document.getElementById('btn2');
+                var list = document.getElementById('list');
+                //加密部分
+                btn1.onclick = function () {
+                    var value = secret.value;
+                    var arr_val = value.split(',');
+                    var ascii = arr_val.map(function (val) {
+                        return (val.charCodeAt(0) + 10) * 2
+                    });
+                    list.innerHTML = "<li>+ascii.join()+"</li >;
+                }
+                //解密部分
+                btn2.onclick = function () {
+                    var lis = document.getElementsByTagName('li');
+                    for (var i = 0; i < lis.length; i++) {
+                        var con = lis[i].innerHTML.split(',');
+                        var letter = con.map(function (val) {
+                            return String.fromCharCode(val / 2 - 10)
+                        });
+                        lis[i].innerHTML = letter.join().replace(/,/g, '');
+                    }
+                }
+            }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <h2>告诉你一个秘密</h2>  
+    <input type="text" id="secret">  
+    <button id="btn1">提交</button>  
+    <button id="btn2">揭秘</button>  
+    <ul id="list">  
+    </ul>  
+</body>
+</html>
