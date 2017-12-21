@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>rsa算法</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://www.gdutzuo.top:8080/source/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://www.gdutzuo.top:8080/source/bootstrap.min.css">
+    <script src="http://www.gdutzuo.top:8080/source/bootstrap.min.js"></script>
+    <script type="text/javascript" src="ras.js"></script>
+</head>
+<style type="text/css" rel="stylesheet">
+    .center {
+        margin-top: 1%;
+    }
+
+    p {
+        word-break: break-all;
+    }
+
+    textarea {
+        height: 200px !important;
+    }
+</style>
+<body class="container">
+
+
+<div class="row center">
+    <h2 class="text-center">RSA</h2>
+    <div class="col-sm-6 col-sm-push-3">
+        <input type="number" class="form-control" id="key_p" placeholder="设置p">
+        <br/>
+        <input type="number" class="form-control" id="key_q" placeholder="设置q">
+        <br/>
+        <input type="number" class="form-control" id="key_e" placeholder="设置e">
+    </div>
+</div>
+<br/>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-push-3">
+        <label for="psw">需要加/解密的内容:</label>
+        <input type="number" class="form-control" id="psw">
+    </div>
+</div>
+<div class="row">
+    <br/>
+
+    <div class="col-sm-6 col-sm-push-3">
+        <button type="button" id="on_lock" class="btn btn-info btn-block">加密</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-sm-push-3">
+        <label for="unlock_key">生成/输入私钥:</label>
+        <input type="number" class="form-control" id="unlock_key">
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-6 col-sm-push-3">
+        <label for="unlock_key1">n的值</label>
+        <input type="number" class="form-control" id="unlock_key1" readonly>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm-6 col-sm-push-3 ">
+        <br/>
+
+        <button type="button" id="un_lock" class="btn btn-success btn-block">解密</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-push-3">
+        <p id="result" class="text-center h4 lead"></p>
+    </div>
+</div>
+
+</body>
+</html>
