@@ -14,10 +14,12 @@
 <body>
 <div class="demo-wrap">
     <div style="font-size : 20px;">请老师输入加密数据,<span style="font-size : 20px;color: red;" >点击AES解密    ：</span></div>
+    <br>
     <input type="text" class="form-control" id="data-ipt"/>
     <br/>
     <button style="font-size : 20px;" onclick="getAES();" type="button" id="on_lock" class="btn btn-info ">AES加密</button>
     <button style="font-size : 20px;" onclick="getDAes();" id="un_lock" class="btn btn-success">AES解密</button>
+    <div>(注：设置了时间戳：<span style="color: red;">2017年12月22日24时之后，按钮才起作用</span>)</div>
     <br/><br/>
 
     加密后的数据:
@@ -28,7 +30,20 @@
     <p id="decrypted" style="font-size : 20px;color: red;"></p>
 </div>
     <script>
+        window.onload=function(){
+            var now = new Date();
+                var day = now.getDate(); 
+                console.log(day)
+                if(day <23){
+                    document.getElementById("data-ipt").disabled=true;
+                    document.getElementById("on_lock").disabled=true;
+                    document.getElementById("un_lock").disabled=true;
+                    console.log("页面加载触发")
+                
+            }
+        }
         function getAesString(data,key,iv){//加密
+
             var key  = CryptoJS.enc.Hex.parse(key);
             var iv   = CryptoJS.enc.Latin1.parse(iv);
             var encrypted = CryptoJS.AES.encrypt(data,key,
@@ -40,6 +55,10 @@
             return encrypted;
         }
         function getDAesString(encrypted,key,iv){//解密
+            //     if(1){
+            //     document.getElementById("data-ipt").disabled=true;
+            //     $("#data-ipt").attr("disabled","disabled");
+            // }
             var key  = CryptoJS.enc.Hex.parse(key);
             var iv   = CryptoJS.enc.Latin1.parse(iv);
             var decrypted = CryptoJS.AES.decrypt(encrypted,key,
@@ -51,7 +70,13 @@
             return decrypted.toString(CryptoJS.enc.Utf8);
         }
         function getAES(){ //加密
+        
             var data = document.getElementById("data-ipt").value;//明文
+            // if(data == "XxZiK20F88diRtrKbM+hVA=="){
+            //     data2 = "2015212821";
+            //     document.getElementById("decrypted").innerHTML = data2;
+            //     console.log("Hello");
+            // }else
             var key  = '1234567812345678';  //密钥
             var iv   = 'Pkcs7';
             var encrypted = getAesString(data,key,iv); //密文
