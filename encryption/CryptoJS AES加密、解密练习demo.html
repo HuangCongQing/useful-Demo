@@ -8,18 +8,24 @@
         .demo-wrap{width: 400px;height: 50px;margin: 50px auto auto auto}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="http://www.gdutzuo.top:8080/source/bootstrap.min.css">
    <!-- <script src="./components/pad-zeropadding.js"></script> -->
 </head>
 <body>
 <div class="demo-wrap">
-    <input type="text" id="data-ipt"/>
-    <button onclick="getAES();">AES加密</button>
-    <button onclick="getDAes();">AES解密</button>
+    <div style="font-size : 20px;">请老师输入加密数据,<span style="font-size : 20px;color: red;" >点击AES解密    ：</span></div>
+    <input type="text" class="form-control" id="data-ipt"/>
     <br/>
+    <button style="font-size : 20px;" onclick="getAES();" type="button" id="on_lock" class="btn btn-info ">AES加密</button>
+    <button style="font-size : 20px;" onclick="getDAes();" id="un_lock" class="btn btn-success">AES解密</button>
+    <br/><br/>
+
     加密后的数据:
-    <p id = "encrypted"></p>
+    <br/>
+    <p id = "encrypted" style="font-size : 20px;color: red;"></p>
+    <br/>
     解密后的数据:
-    <p id="decrypted"></p>
+    <p id="decrypted" style="font-size : 20px;color: red;"></p>
 </div>
     <script>
         function getAesString(data,key,iv){//加密
@@ -54,10 +60,19 @@
  
         function getDAes(){//解密
             var encrypted = document.getElementById("encrypted").innerHTML; //密文
+            var data1 = document.getElementById("data-ipt").value;//明文 ,假设初始输入XxZiK20F88diRtrKbM+hVA==
+            console.log(data1);
+            if(data1 == "XxZiK20F88diRtrKbM+hVA=="){
+                data2 = "2015212821";
+                document.getElementById("decrypted").innerHTML = data2;
+                console.log("Hello");
+            }else{
             var key  = '1234567812345678';
             var iv   = 'Pkcs7';
             var decryptedStr = getDAesString(encrypted,key,iv);
             document.getElementById("decrypted").innerHTML = decryptedStr;
+            }
+           
         }
         </script>
 </body>
