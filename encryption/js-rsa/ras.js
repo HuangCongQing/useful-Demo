@@ -1,5 +1,6 @@
 /**
  * Created by Chongqing on 2017/12/11.
+ * 设p=5,q=11,e=3,明文为9,用RSA算法进行加密和解密,并比较结果.
  */
 function handle(a, b, c) {
     var r = parseInt(1, 10);
