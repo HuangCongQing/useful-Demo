@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<script src="https://nankeer.github.io/lib-flexible.min.js"></script>
+
+	<meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+
+    <link rel="apple-touch-icon" href="https://nankeer.github.io/favicon.ico">
+    <link rel="Shortcut Icon" href="https://nankeer.github.io/favicon.ico" type="image/x-icon">
+	
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+
+</head>
+<body>
+	<div id="view">
+		<main id="wrapper">
+			
+			<!-- search-box -->
+			<div class="search-box">
+				<div class="search">
+					<i class="fa fa-search"></i>
+					<input type="text" placeholder="输入关键字">
+					<i class="fa fa-times-circle js-clear"></i>
+				</div>
+				<a class="search-btn" href="####">搜索</a>
+			</div>
+
+			<!-- hot-key -->
+			<div class="hot-key">
+				<a href="#">未成年持械拍网红</a>
+				<a href="#">账号凭空多巨款</a>
+				<a href="#">广西现龙吸水奇观</a>
+				<a href="#">王传君恋情曝光</a>
+			</div>
+
+			<!-- search-history -->
+			<h1 class="history-topic"><span>输入记录</span><i class="fa fa-trash js-remove"></i></h1>
+			<div class="search-history swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" id="lists">
+
+					
+
+					</div>  <!-- swiper-slide end -->
+				</div>  <!-- swiper-wrapper end -->
+			</div>
+
+		</main>
+	</div>
+	
+	<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
+	<script src="localstore.js"></script>
+	<script type="text/javascript">
+
+		var swiper = new Swiper(".swiper-container", {
+			direction: "vertical",
+
+	    	slidesPerView: 'auto',
+	    	roundLengths: true,
+
+	        watchSlidesProgress: true,
+	        watchSlidesVisibility: true,
+
+	        freeMode: true,
+	        freeModeMomentumRatio: 1,
+	        freeModeSticky: true
+		});
+
+		var searchBtn = document.querySelector(".search-btn");
+		var ipt       = document.querySelector(".search").querySelector("[type=text]");
+		var lists     = document.getElementById("lists");
+		var removeBtn  = document.querySelector(".js-remove");
+
+		renderHistory();
+
+		searchBtn.addEventListener("touchend", function(ev){
+			ev.preventDefault();
+			if(ipt.value){
+				console.log(ipt.value);
+
+				// 用时间作为 key
+				store.set(+new Date(), ipt.value)
+				
+				// please post here.
+				location.reload()
+			}
+		});
+
+		removeBtn.addEventListener("touchend", function(ev){
+			ev.preventDefault();
+
+			emptyHistory();
+
+			// please post here.
+			location.reload()
+		})
+
+
+		/**
+		 * [renderHistory 渲染输入记录列表]
+		 * @return {[type]} [description]
+		 */
+		function renderHistory(){
+			var rets = parseHistory();
+			var str = "";
+
+			rets.reverse();
+			rets = arrayUniq(rets);
+
+
+			rets.forEach(function(ret){
+				str += '<div class="record"><a href="#">\
+								<span><i class="fa fa-search"></i>'+ret+'</span>\
+								<i class="fa fa-mail-forward"></i>\
+							</a></div>';
+			});
+
+			lists.innerHTML = str;
+		}
+
+		/**
+		 * [emptyHistory 清空输入记录]
+		 * @return {[type]} [description]
+		 */
+		function emptyHistory(){
+			var length = store.s.length;
+
+			while(length--){
+				if(!isNaN(store.s.key(length))){
+					store.remove(store.s.key(length))
+				}
+			}
+
+			lists.innerHTML = '';
+		}
+
+		/**
+		 * [parseHistory `解析localStorage中的值]
+		 * @return {[type]} [description]
+		 */
+		function parseHistory(){
+			var all = store.getAll();
+			var rets = [];
+
+			var keys = [];
+
+			for(var key in all){
+				if(Object.prototype.hasOwnProperty.call(all, key) &&
+					!isNaN(key)){
+					keys.push(key);
+				}
+			}
+	
+			keys.sort();
+
+			var length = keys.length;
+
+			while(length--){
+				rets[length] = all[keys[length]]
+			}
+
+			return rets;
+		}
+
+		/**
+		 * [arrayUniq 数组去重]
+		 * @param  {[type]} arr [description]
+		 * @return {[type]}     [description]
+		 */
+		function arrayUniq(arr){
+			var ret = [];
+
+			arr.forEach(function(array, index){
+				(ret.indexOf(array) === -1) &&
+					(ret.push(array))
+			});
+
+			return ret;
+		}
+
+	</script>
+</body>
+</html>
