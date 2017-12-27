@@ -68,18 +68,34 @@
                   new_inputStorageStr = '';
 
               // 数组去重  去掉重复搜索的值
-              storageArr.map(function(item,index){
-                if(item == inputVal) {
-                  storageArr.splice(index,1);
-                }
-              });
-
-              if (storageArr.length > count) {
-                storageArr.pop(inputVal);
-              }
-
-              storageArr.unshift(inputVal);
-              new_inputStorageStr = storageArr.join('-');
-              localStorage.setItem('key', new_inputStorageStr);
-
+               storageArr.map(function(item,index){
+            if(item == inputVal) {
+              storageArr.splice(index,1);
             }
+          });
+          if (storageArr.length > count) {
+            storageArr.pop(inputVal);
+          }
+          storageArr.unshift(inputVal);
+          new_inputStorageStr = storageArr.join('-');
+          localStorage.setItem('key', new_inputStorageStr);
+        }
+      }
+      $('#keyword').val('');
+      showHistory();
+    }
+    showHistory();
+    // 显示多少条历史记录
+    function showHistory(){
+      var arr = localStorage.getItem('key').split('-');
+      var container = document.querySelector('#history-conter');
+      var str = '';
+      arr.forEach(function(item,index){
+        str += `<span>${item}</span>`;
+      });
+      container.innerHTML = `<div>${str}</div>`;
+    }
+  </script>
+</body>
+
+</html>
