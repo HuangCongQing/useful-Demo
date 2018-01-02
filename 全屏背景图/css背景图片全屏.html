@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>如何让css背景图片占满全部背景,并且保持长宽比</title>
+</head>
+<style lang="">
+    body{
+        /* 加载背景图 */
+background-image: url('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3432160574,3288529503&fm=200&gp=0.jpg');
+ 
+ /* 背景图垂直、水平均居中 */
+ background-position: center center;
+  
+ /* 背景图不平铺 */
+ background-repeat: no-repeat;
+  
+ /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+ background-attachment: fixed;
+  
+ /* 让背景图基于容器大小伸缩 */
+ background-size: cover;
+  
+ /* 设置背景颜色，背景图加载过程中会显示背景色 */
+ background-color: #464646;
+  /* 上面最重要的一条就是： */
+ background-size: cover;
+ /* 这样浏览器就会按比例缩放背景图直至背景图宽高不小于容器的宽高（在上面的例子中，就是body标签）。 */
+
+ /* 同时，为了让背景图始终相对于viewport居中，我们声明了： */
+ 
+background-position: center center;
+/* 上面的规则会把背景图缩放的原点定位到viewport的中心。 */
+
+/* 接下来我们需要解决的问题是：当内容的高度大于viewport的高度时，会出现滚动条。我们希望背景图始终相对于viewport固定，即使用户滚动时也是一样。
+ 
+解决办法就是： */
+ 
+background-attachment: fixed;
+ }
+
+  
+
+</style>
+<body>
+    Hello
+</body>
+</html>
