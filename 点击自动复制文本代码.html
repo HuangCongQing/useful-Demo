@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+<title>Js复制代码</title> 
+</head> 
+<body> 
+ 
+    <input size="40" onclick="this.select();" id="zzzz" type="text" value="www.baidu.com" />   
+    <a href="###" onclick="copyUrl()">复制链接</a>  
+<script language="javascript"> 
+function copyUrl()              
+{  
+   var clipBoardContent="拷贝成功！";  
+   var clipBoard_Error="抱歉！您现在的浏览器不支持自动拷贝功能，请手动拷贝链接发给好友";  
+   if(window.clipboardData){  
+        var url = document.getElementById("zzzz").value  
+        window.clipboardData.setData("Text",url);  
+        alert(clipBoardContent);  
+   }else{  
+        alert(clipBoard_Error);  
+   }  
+}  
+</script> 
