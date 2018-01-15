@@ -1,15 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>纯CSS实现的右侧底部简洁悬浮效果</title>
     <style lang="">
-        
+        body{
+            height: 3000px;
+        }
+        /* 我们使用CSS来完成浮动即鼠标滑向弹出效果。我们准备一张图片right_bg.png，包含了几个内容的图标，然后通过background-position各个图标对应的a内容。我们使用position: fixed以及设置bottom和right值将.side-bar固定在右下角，这样无论页面如何滚动，.side-bar将一直在右下角位置不变。这里需要提下ie6下fixed效果需要单独处理，但本文不做详解，放弃ie6吧。 */
+
+        .side-bar a,
+        .chat-tips i {
+            background: url(right_bg.png) no-repeat;
+        }
+
+        .side-bar {
+            width: 66px;
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            font-size: 0;
+            line-height: 0;
+            z-index: 100;
+        }
+
+        .side-bar a {
+            width: 66px;
+            height: 66px;
+            display: inline-block;
+            background-color: #ddd;
+            margin-bottom: 2px;
+        }
+
+        .side-bar a:hover {
+            background-color: #669fdd;
+        }
+
+        .side-bar .icon-qq {
+            background-position: 0 -62px;
+        }
+
+        .side-bar .icon-chat {
+            background-position: 0 -130px;
+            position: relative;
+        }
+
+        .side-bar .icon-blog {
+            background-position: 0 -198px;
+        }
+
+        .side-bar .icon-mail {
+            background-position: 0 -266px;
+        }
+        /* 这里还有个鼠标滑向微信图标的效果，当鼠标hover时，.chat-tips的display属性设置为block，并且设置定位位置，一下代码还包含了一个箭头的CSS写法： */
+
+        .side-bar .icon-chat:hover .chat-tips {
+            display: block;
+        }
+
+        .chat-tips {
+            padding: 20px;
+            border: 1px solid #d1d2d6;
+            position: absolute;
+            right: 78px;
+            top: -55px;
+            background-color: #fff;
+            display: none;
+        }
+
+        .chat-tips i {
+            width: 9px;
+            height: 16px;
+            display: inline-block;
+            position: absolute;
+            right: -9px;
+            top: 80px;
+            background-position: -88px -350px;
+        }
+
+        .chat-tips img {
+            width: 138px;
+            height: 138px;
+        }
     </style>
 </head>
+
 <body>
-    
+    sfagaasga
+    <div class="side-bar">
+        <a href="#" class="icon-qq">QQ在线咨询</a>
+        <a href="#" class="icon-chat">微信
+            <div class="chat-tips">
+                <i></i>
+                <img style="width:138px;height:138px;" src="helloweba.jpg" alt="微信订阅号">
+            </div>
+        </a>
+        <a target="_blank" href="" class="icon-blog">微博</a>
+        <a href="http://www.helloweba.net/gbook.html" class="icon-mail">mail</a>
+    </div>
 </body>
+
 </html>
