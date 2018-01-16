@@ -1,0 +1,39 @@
+<!-- /*
+ * @Author: HCQ 
+ * @Date: 2018-01-16 14:50:24 
+ * @Last Modified by:   HCQ 
+ * @Last Modified time: 2018-01-16 14:50:24 
+ */ -->
+<!-- 很多时候在移动端的web页面中, 需要使用搜索功能, 然而页面中并没有太多的空间来放置一个像pc端上那样的搜索按钮, 这时候就需要借用手机输入法自带的搜索按钮来实现点击搜索
+
+虽然不是什么大的功能, 但是确实很实用,  实现的效果有一下两点
+
+1. 点击input元素, 弹出的键盘右下角显示为 "搜索" 二字
+
+2. 点击搜索时, 可以出发页面中的js事件 -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <form id="myform" action="" onsubmit="return false;">
+    <input id="myinput" type="search">
+    </form>
+</body>
+<script>
+//这两种都能用, 一个是在form上加id 一个是在input元素加id
+//对于苹果手机添加一个form元素是必要的,否则只能实现功能但是键盘的文字不能变成搜索字样
+//  $('#myform').bind('search', function () {
+//      //coding
+//      alert(1);
+//  });
+    $('#myinput').bind('search', function () {
+        //coding
+        alert(1);
+    });
+</script>
+</html>
