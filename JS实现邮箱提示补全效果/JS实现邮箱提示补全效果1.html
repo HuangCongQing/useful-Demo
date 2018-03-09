@@ -1,0 +1,139 @@
+<!-- /*
+ * @Author: HCQ 
+ * @Date: 2018-01-16 22:46:37 
+ * @Last Modified by:   HCQ 
+ * @Last Modified time: 2018-01-16 22:46:37 
+ S :http://blog.csdn.net/qq_36936155/article/details/72668945
+ */ -->
+
+
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>自动提示的文本框</title>  
+    <style>  
+        body{  
+            font-family: Arial,Helvetica,sans-serif;  
+            font-size: 12px;padding: 0px;margin: 5px;  
+        }  
+        form{  
+            padding: 0px;  
+            margin: 0px;  
+        }  
+        input{  
+            /*用户输入框的样式*/  
+            font-family: Arial,Helvetica,sans-serif;  
+            font-size: 12px;  
+            border: 1px solid #000000;  
+            width: 200px;  
+            padding: 1px;  
+            margin: 0px;  
+        }  
+        #poput{  
+            /*提示框div块的样式*/  
+            position: absolute;  
+            width: 202px;  
+            color: #004a7e;  
+            font-size: 12px;  
+            font-family: Arial,Helvetica,sans-serif;  
+            left: 41px;  
+            top: 25px;  
+        }  
+        #popup.show{  
+            /*显示提示框的样式*/  
+            border:1px solid #004a7e;  
+        }  
+        #popup.hide{  
+            /*隐藏提示框的边框*/  
+            border: none;  
+        }  
+        ul{  
+            list-style: none;  
+            margin: 0px;  
+            padding: 0px;  
+        }  
+        li.mouseOver{  
+            background-color: #004a7e;  
+            color: #ffffff;  
+        }  
+        li.mouseOut{  
+            background-color: #FFFFFF;  
+            color: #004a7e;  
+        }  
+    </style>  
+    <script>  
+        var oInputField;  
+        var oPopDiv;  
+        var oColorsUl;  
+        var aColors=["red","green","blue","magenta","yellow","chololate","black","aquamarine","lime","darkgreen","cornfloewrblue"];  
+        aColors.sort();//按字母排序，使显示结果更友好  
+        function initVars(){  
+            //初始化变量  
+            oInputField = document.forms['myForm1'].colors;  
+            oPopDiv = document.getElementById("popup");  
+            oColorsUl = document.getElementById("colors_ul");  
+  
+        }  
+        function clearColors(){  
+            //清除提示内容  
+            for(var i=oColorsUl.childNodes.length-1;i>=0;i--)  
+                oColorsUl.removeChild(oColorsUl.childNodes[i]);  
+            oPopDiv.classList.add("hide");  
+        }  
+        function setColors(the_colors){  
+            //显示提示框，传入的参数即为匹配出来的结果组成的数组  
+            clearColors();//每输入一个字母就先清除原先的提示，再继续  
+            oPopDiv.classList.add("show");  
+            var oLi;  
+            for(var i = 0;i<the_colors.length;i++){  
+                //将匹配的提示结果逐一显示给用户  
+                oLi = document.createElement("li");  
+                oColorsUl.appendChild(oLi);  
+                oLi.appendChild(document.createTextNode(the_colors[i]));  
+  
+                oLi.onmouseover = function(){  
+                    this.className = "mouseOver";//鼠标指针经过时高亮  
+                }  
+                oLi.onmouseout = function(){  
+                    this.className = "mouseOut";//鼠标指针离开时恢复原样  
+                }  
+  
+                oLi.onclick = function(){  
+                    //用户单击某个匹配项时，设置输入框为该项的值  
+                    oInputField.value=this.firstChild.nodeValue;  
+                    clearColors();//同时清除提示框  
+                }  
+            }  
+        }  
+        function findColors(){  
+            initVars();//初始化变量  
+            if (oInputField.value.length>0) {  
+                var aResult = new Array();  
+                for(var i=0;i<aColors.length;i++){  
+                    if (aColors[i].indexOf(oInputField.value)==0) {  
+                        aResult.push(aColors[i]);  
+                    }  
+                }  
+                if (aResult.length>0) {  
+                    setColors(aResult);  
+                }else{  
+                    clearColors();  
+                }  
+            }  
+            else{  
+                clearColors();  
+            }  
+        }  
+    </script>  
+</head>  
+<body>  
+    <form action="#" method="post" name="myForm1">  
+        Color:<input type="text" name="colors" id="colors" onkeyup="findColors();">  
+    </form>  
+    <div id="popup">  
+        <ul id="colors_ul" class="">    
+        </ul>  
+    </div>  
+</body>  
+</html>  

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加解密时仅需要秘钥</title>
+</head>
+<body>
+    <script src="aes_2.js"></script>　　
+    <script type="text/javascript">
+        var pwd="秘钥";
+
+        function Encrypt(word){
+            return CryptoJS.AES.encrypt(word,pwd).toString();
+        }
+
+        function Decrypt(word){
+            return CryptoJS.AES.decrypt(word,pwd).toString(CryptoJS.enc.Utf8);
+        }
+
+        var mm = Encrypt('nihao');
+        console.log(mm)
+        var jm = Decrypt(mm);
+        console.log(jm)
+       
+    </script>
+</body>
+</html>

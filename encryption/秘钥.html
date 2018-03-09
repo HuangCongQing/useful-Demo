@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JavaScript利用密钥加密与解密</title>
+    <script type="text/javascript">
+        function getKey() {
+            var key = $F("txtKey");
+            if (key == "") return 0;
+            var result = 0;
+            for (var i = 0; i < key.length; i++) {
+                result += key.charCodeAt(i) * key.length;                
+            }
+            return result;
+        }
+        var fnCompile = function() {
+            var result = compile($F('txtInfo'), getKey());
+            $("txtInfo").value = result;
+        }
+        var fnUncompile = function() {
+            var result = uncompile($F('txtInfo'), getKey());
+            $("txtInfo").value = result;
+        }        
+        window.onload = function() {
+            addEvent($("btnCompile"), "click", fnCompile);
+            addEvent($("btnUncompile"), "click", fnUncompile);          
+        }
+
+        //加密
+        //info:待加密信息,key:密钥
+        function compile(info, key) {
+            var result = "";
+            for (var i = 0; i < info.length; i++) {
+                var tempNum = info.charCodeAt(i) + key;
+                result += tempNum + ",";
+            }
+            if (result.substring(result.length - 1, result.length) == ",")
+                result = result.substring(0, result.length - 1);
+            return escape(result);
+        }
+        //解密
+        //info:待解密信息,key:密钥
+        function uncompile(info, key) {
+            var result = "";
+            var info = unescape(info).split(',');
+            for (var i = 0; i < info.length; i++) {
+                var tempNum = info[i] - key;
+                result += String.fromCharCode(tempNum);
+            }
+            return result;
+        }
+        
+        function $(id) { return document.getElementById(id); }
+        function $F(id) { return document.getElementById(id).value; }
+        //绑定事件
+        function addEvent(obj, type, fn) {
+            if (obj.attachEvent) {
+                obj['e' + type + fn] = fn;
+                obj[type + fn] = function() { obj['e' + type + fn]
+
+(window.event); }
+                obj.attachEvent('on' + type, obj[type + fn]);
+            } else obj.addEventListener(type, fn, false);
+        }
+        //移除事件
+        function removeEvent(obj, type, fn) {
+            if (obj.detachEvent) {
+                obj.detachEvent('on' + type, obj[type + fn]);
+                obj[type + fn] = null;
+            } else obj.removeEventListener(type, fn, false);
+        }
+
+      
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    密钥：<input type="text" id="txtKey" value="123" />
+    <input type="button" id="btnCompile" value="加密" />
+    <input type="button" id="btnUncompile" value="解密" />
+    
+    <br />
+    <textarea id="txtInfo" rows="20" cols="80">想加密的字123...</textarea>
+    </form>
+</body>
+</html>

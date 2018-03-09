@@ -1,0 +1,109 @@
+<!-- /*
+ * @Author: HCQ 
+ * @Date: 2018-01-16 22:48:59 
+ * @Last Modified by:   HCQ 
+ * @Last Modified time: 2018-01-16 22:48:59 
+ */ -->
+<!-- http://blog.csdn.net/zhuolei123/article/details/8582361 -->
+
+<!doctype html>  
+<html>  
+<head>  
+    <meta charset="utf-8" />  
+    <title></title>  
+    <style>  
+        ul{padding:0px;margin:0px;}  
+        .login_autoComplete{width:256px;border:1px solid #4190db;position:absolute;background-color:#ffffff;z-index:99;top:109px;left:40px;display:none}  
+        .login_auto_ul em{font-style:normal}  
+        .login_auto_ul li.login_auto_title{font-weight:normal;line-height:30px;}  
+        .login_auto_ul li{line-height:22px;text-indent:5px;font-family:"Arial";cursor:pointer;font-weight:bold;color:#333}  
+        .login_auto_ul li.hover,.login_auto_ul li.curr{color:#ffffff;background-color:#6eb6fe}  
+    </style>  
+    <script src="http://s3.lvjs.com.cn/js/new_v/jquery-1.7.2.min.js"></script>  
+    <script>  
+        window.email_auto = function(selector){  
+            var elt = $(selector);  
+            var strHtml = '<div class="login_autoComplete" id="login_autoComplete">'+  
+                        '       <ul class="login_auto_ul">'+  
+                        '           <li class="login_auto_title">请选择邮箱后缀</li>'+  
+                        '           <li class="hover" hz="@qq.com"></li>'+  
+                        '           <li hz="@163.com"></li>'+  
+                        '           <li hz="@126.com"></li>'+  
+                        '           <li hz="@yahoo.com"></li>'+  
+                        '           <li hz="@sina.com"></li>'+  
+                        '           <li hz="@21cn.com"></li>'+  
+                        '       </ul>'+  
+                        '   </div>';  
+            var lc = "#login_autoComplete";  
+            var autoComplete,autoLi;  
+            if($(lc).length==0){  
+                $("body").append(strHtml);  
+                $(lc).data("elt",elt);  
+                autoComplete = $("#login_autoComplete");  
+                autoLi = autoComplete.find("li:not(.login_auto_title)");  
+                autoLi.mouseover(function(){  
+                    $(this).siblings().filter(".hover").removeClass("hover");  
+                    $(this).addClass("hover");  
+                }).mouseout(function(){  
+                    $(this).removeClass("hover");  
+                }).mousedown(function(){  
+                    $(lc).data("elt").val($(this).text()).change();  
+                    $(this).parent().parent().hide();  
+                });  
+            }else{  
+                $(lc).data("elt",elt);  
+                autoComplete = $("#login_autoComplete");  
+                autoLi = autoComplete.find("li:not(.login_auto_title)");  
+            }  
+            $(lc).css("width",elt.outerWidth()-1);  
+            //用户名补全+翻动  
+            elt.keyup(function(e){  
+                if(/13|38|40|116/.test(e.keyCode) || this.value==''){  
+                    return false;  
+                }  
+                var username = this.value;  
+                if(username.indexOf("@")==-1){  
+                    autoComplete.hide();  
+                    return false;  
+                }  
+                autoLi.each(function(){  
+                    this.innerHTML = username.replace(/\@+.*/,"")+$(this).attr("hz");  
+                    if(this.innerHTML.indexOf(username)>=0){  
+                        $(this).show();  
+                    }else{  
+                        $(this).hide();   
+                    }  
+                }).filter(".hover").removeClass("hover");  
+                autoComplete.show().css({  
+                    left : $(this).offset().left,  
+                    top : $(this).offset().top + $(this).outerHeight(true) - 1  
+                });  
+                if(autoLi.filter(":visible").length==0){  
+                    autoComplete.hide();  
+                }else{  
+                    autoLi.filter(":visible").eq(0).addClass("hover");            
+                }  
+            }).change(function(){  
+                $("#login_autoComplete").hide();  
+            }).keydown(function(e){  
+                if(e.keyCode==38){ //上  
+                    autoLi.filter(".hover").prev().not(".login_auto_title").addClass("hover").next().removeClass("hover");  
+                }else if(e.keyCode==40){ //下  
+                    autoLi.filter(".hover").next().addClass("hover").prev().removeClass("hover");  
+                }else if(e.keyCode==13){ //Enter  
+                    autoLi.filter(".hover").mousedown();  
+                }  
+            }).focus(function(){  
+                $("#login_autoComplete").data("elt",$(this));  
+            });  
+        }  
+        $(function(){  
+            email_auto("#xxx");  
+        });  
+    </script>  
+</head>  
+<body>  
+    <input type="text" id="xxx" style="width:300px"/>  
+</body>  
+</html>  
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="UTF-8">  
+<meta http-equiv="Pragma"content="no-cache">  
+<metahttp-equiv="Cache-Control" content="no-cache">  
+<meta http-equiv="Expires"content="0">  
+<title>Copy2Clipboard</title>  
+</head>  
+<body>  
+         <button id="copy_button" data-clipboard-target="copy_textarea"><b>复制到剪贴板</b></button><br/><br/>  
+         <textarea id="copy_textarea" rows="20" cols="100">待复制内容</textarea>  
+</body>  
+</html>  
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.3.0/ZeroClipboard.min.js"></script>  
+<script type="text/javascript">  
+         //定义一个新的复制对象  
+         var clip = new ZeroClipboard( document.getElementById("copy_button"), {  
+           moviePath:"./ZeroClipboard.swf"//设置ZeroClipboard.swf位置  
+         });  
+   
+         //复制内容到剪贴板成功后的操作  
+         clip.on('complete', function(client, args) {  
+            alert("复制成功，复制内容为："+args.text);  
+         });  
+</script>  

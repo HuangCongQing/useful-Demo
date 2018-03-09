@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>禁止网页选择文字</title>
+</head>
+<style>
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    not supported by any browser */
+}
+</style>
+<body>
+     
+<div>
+<div onselectstart="return false">  
+    <p>方法一</p>
+    onselectstart="return false"
+    
+
+</div>  
+    ---
+<p>方法二</p>
+<p>
+Selectable text.
+</p>
+
+<p class="noselect">
+Unselectable text.
+</p>
+
+</div> 
+    
+</body>
+</html

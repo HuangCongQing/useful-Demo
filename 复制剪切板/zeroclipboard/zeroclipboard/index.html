@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="admin@dayanmei.com">
+  <meta name="Keywords" content="ZeroClipboard.swf,ZeroClipboard.js">
+  <meta name="Description" content="ZeroClipboard.swf使用方法以及api和结合jquery使用">
+  <title>ZeroClipboard.swf使用演示(demo) api javascript(js)</title>
+  <script src="/js/jquery/jquery.min.js"></script>
+  <script src="/js/zeroclipboard/ZeroClipboard.min.js"></script>
+ </head>
+ <body>
+  <table id="ad_quick_list" cellspacing="5" cellpadding="5">
+				            <tbody>
+				            <tr>
+				                <td class="leftClass" style="width: 60px;">JS代码:</td>
+				                <td>
+				                    <textarea class="ad_js_code code_area copy_btn" style="cursor:pointer;width:600px;height:60px;" id="click_ad_js_code"><script src="http://www.dayanmei.com/?kid=183,375,23&type=js"></script></textarea>
+				                </td>
+				            </tr>
+				            <tr>
+				                <td class="leftClass" style="width: 60px;">iframe代码:</td>
+				                <td>
+				                    <textarea class="ad_iframe_code code_area copy_btn" style="cursor:pointer;width:600px;height:60px;" id="click_ad_iframe_code"><iframe src="http://www.dayanmei.com/?kid=183,375,23" style="width:120px;height:400px;margin:0;padding:0;" frameborder="no" border="0"></iframe></textarea>
+				                </td>
+				            </tr>
+
+						
+				        </tbody>
+				        </table>
+<script type="text/javascript">
+		//拷贝代码
+		var clip = new ZeroClipboard($(".copy_btn"), {
+			  moviePath: "/js/zeroclipboard/ZeroClipboard.swf"
+		});
+		clip.on( 'mousedown', function(client) {
+		    clip.setText($(this).val());
+		});
+		clip.on( 'complete', function(client, args) {
+			alert('代码已经复制到您的剪贴板,使用ctrl+v粘贴或者右键粘贴。');
+		});
+</script>
+ </body>
+</html>
