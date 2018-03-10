@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+        .container{
+            padding: 0 160px 0 200px;
+        }
+        .container div{
+            float:left;
+            height: 500px;
+        }
+        .main{
+            width:100%;
+            background:#ddd;
+        }
+        .sub{
+            position: relative;
+            width:200px;
+            background:#13b5b1;
+            margin-left: -100%;
+            left: -200px;
+            *left: 160px;      /*解决IE6、7下的bug,至于为什么是160px,我也表示不解,求知道的告知*/
+        }
+        .extra{
+            position: relative;
+            background:#009e96;
+            margin-left: -160px;
+            width: 160px;
+            right: -160px;
+        }
+	</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="main">主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容主体内容11111111111111111111111111</div>
+    <div class="sub">子列</div>
+    <div class="extra">附加列</div>
+</div>
+
+
+
+</body>
+</html>
