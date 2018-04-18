@@ -1,5 +1,11 @@
 # useful-Demo
 
+* [打印](./print.html)
+onclick="window.print()
+
+
+
+
 * fullpage内容
 
 * 表单
