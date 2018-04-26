@@ -1,0 +1,97 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>投票器</title>
+        <style>
+                * {
+                        margin: 0;
+                        padding: 0;
+                }
+
+                /* body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                } */
+
+                #div1 {
+                        background: #000;
+                        width: 500px;
+                        height: 30px;
+                        position: relative;
+                }
+
+                .a_1,
+                .a_2 {
+                        position: absolute;
+                        top: 0;
+                        height: 30px;
+                }
+
+                .a_1 {
+                        left: 0;
+                        background: #0F6;
+                }
+
+                .a_2 {
+                        right: 0;
+                        background: #39C;
+                }
+
+                input {
+                        margin-top: 30px;
+                }
+                p{
+                        margin: 0 auto;
+                }
+        </style>
+        <script>
+                window.onload = function () {
+                        var oDiv = document.getElementById('div1');
+                        var aDiv = oDiv.getElementsByTagName('div');
+                        var aBtn = document.getElementsByTagName('input');
+                        var lNum = 50;
+                        var rNum = 25;
+                        var lNums = (rNum / (lNum + rNum)) * 500;
+                        var rNums = 500 - lNums;
+                        aDiv[1].style.width = parseInt(lNums) + 'px';
+                        aDiv[0].style.width = 500 - parseInt(lNums) + 'px';
+                        aDiv[0].innerHTML = (lNum / (lNum + rNum)).toFixed(2);
+                        aDiv[1].innerHTML = (1 - lNum / (lNum + rNum)).toFixed(2);
+
+                        aBtn[0].onclick = function () {
+                                lNum = lNum + 1;
+                                var lNumss = parseInt(lNum / (lNum + rNum) * 500);
+                                aDiv[0].style.width = lNumss + 'px';
+                                aDiv[1].style.width = (500 - lNumss) + 'px';
+                                aDiv[0].innerHTML = (lNum / (lNum + rNum)).toFixed(2);
+                                aDiv[1].innerHTML = (1 - lNum / (lNum + rNum)).toFixed(2);
+                        }
+                        aBtn[1].onclick = function () {
+                                rNum = rNum + 1;
+                                var rNumss = parseInt(rNum / (lNum + rNum) * 500);
+                                aDiv[0].style.width = (500 - rNumss) + 'px';
+                                aDiv[1].style.width = rNumss + 'px';
+                                aDiv[0].innerHTML = (lNum / (lNum + rNum)).toFixed(2);
+                                aDiv[1].innerHTML = (1 - lNum / (lNum + rNum)).toFixed(2);
+                        }
+                }
+        </script>
+</head>
+
+<body>
+        <div id="div1">
+                <div class="a_1"></div>
+                <div class="a_2"></div>
+        </div>
+        <input type="button" name="aa" value="投票1" />
+        <input type="button" name="aa" value="投票2" />
+
+        <p style="color:cornflowerblue; line-height: 60px;">请为@熊志强投票，啦啦啦</p>
+</body>
+
+</html>
