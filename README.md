@@ -2,10 +2,10 @@
 
 ### Demo Lists
 
-#### html5
+#### HTML5
 * 规定内容可编辑 contenteditable="true"
 
-### CSS3
+#### CSS3
 
 * fontGIF
 * base64,减少http请求，但不可压缩，容量变大
@@ -14,7 +14,7 @@
 * css3好玩人物动画
 * CSS浮动即鼠标滑向弹出效果
 
-#### JS
+#### JavaScript
 * localStorage缓存
 * 搜索历史记录
 * 复制到剪切板
