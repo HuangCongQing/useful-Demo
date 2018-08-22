@@ -13,6 +13,12 @@
 * CSS实现人走路动画
 * css3好玩人物动画
 * CSS浮动即鼠标滑向弹出效果
+* CSS属性之word-break:break-all强制性换行
+```
+{　　word-break:break-all;
+　　 word-wrap:break-word;
+}
+```
 
 #### JavaScript
 * localStorage缓存
